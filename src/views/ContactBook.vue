@@ -23,7 +23,8 @@
         </button>
         <button
             class="btn btn-sm btn-danger"
-            @click="removeAllContacts()">
+            @click="removeAllContacts()"
+           >
             <i class="fas fa-trash"></i> Xóa tất cả
         </button>
     </div>
@@ -35,6 +36,16 @@
             <i class="fas fa-address-card"></i>
         </h4>
             <ContactCard :contact="activeContact" />
+            <router-link
+            :to="{
+                name: 'contact.edit',
+                params: { id: activeContact._id },
+            }"
+            >
+            <span class="mt-2 badge badge-warning">
+                <i class="fas fa-edit"></i> Hiệu chỉnh</span
+                >
+            </router-link>
         </div>
         </div>
     </div>
@@ -47,6 +58,7 @@ import ContactService from "@/services/contact.service";
 export default {
 components: {
 ContactCard,
+
 InputSearch,
 ContactList,
 },
@@ -120,7 +132,6 @@ data() {
             this.refreshList();
         },
 };
-
 </script>
 <style scoped>
 .page {
